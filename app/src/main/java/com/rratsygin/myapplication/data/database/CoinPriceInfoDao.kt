@@ -1,11 +1,11 @@
-package com.rratsygin.myapplication.database
+package com.rratsygin.myapplication.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rratsygin.myapplication.pojo.CoinPriceInfo
+import com.rratsygin.myapplication.data.model.CoinPriceInfo
 
 
 @Dao

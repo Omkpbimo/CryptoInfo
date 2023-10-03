@@ -1,13 +1,13 @@
-package com.rratsygin.myapplication
+package com.rratsygin.myapplication.presentation
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.rratsygin.myapplication.adapter.CoinInfoAdapter
+import com.rratsygin.myapplication.presentation.adapters.CoinInfoAdapter
 import com.rratsygin.myapplication.databinding.ActivityCoinPriceListBinding
-import com.rratsygin.myapplication.pojo.CoinPriceInfo
+import com.rratsygin.myapplication.data.model.CoinPriceInfo
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -28,7 +28,10 @@ class CoinPriceListActivity : AppCompatActivity() {
 
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinPriceInfo) {
-                val intent = CoinDetailActivity.newIntent(this@CoinPriceListActivity, coinPriceInfo.fromSymbol)
+                val intent = CoinDetailActivity.newIntent(
+                    this@CoinPriceListActivity,
+                    coinPriceInfo.fromSymbol
+                )
                 Log.d("ON_CLICK_TEST", coinPriceInfo.fromSymbol)
                 startActivity(intent)
             }

@@ -1,4 +1,4 @@
-package com.rratsygin.myapplication.api
+package com.rratsygin.myapplication.data.network
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

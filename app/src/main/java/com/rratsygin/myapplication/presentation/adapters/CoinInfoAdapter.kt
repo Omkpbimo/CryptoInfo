@@ -1,13 +1,12 @@
-package com.rratsygin.myapplication.adapter
+package com.rratsygin.myapplication.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.rratsygin.myapplication.R
 import com.rratsygin.myapplication.databinding.ItemCoinInfoBinding
-import com.rratsygin.myapplication.pojo.CoinPriceInfo
+import com.rratsygin.myapplication.data.model.CoinPriceInfo
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {

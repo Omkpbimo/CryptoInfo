@@ -1,7 +1,7 @@
-package com.rratsygin.myapplication.api
+package com.rratsygin.myapplication.data.network
 
-import com.rratsygin.myapplication.pojo.CoinInfoListOfData
-import com.rratsygin.myapplication.pojo.CoinPriceInfoRawData
+import com.rratsygin.myapplication.data.model.CoinInfoListOfData
+import com.rratsygin.myapplication.data.model.CoinPriceInfoRawData
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

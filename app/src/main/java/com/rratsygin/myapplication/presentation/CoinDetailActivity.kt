@@ -1,11 +1,9 @@
-package com.rratsygin.myapplication
+package com.rratsygin.myapplication.presentation
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.rratsygin.myapplication.databinding.ActivityCoinDetailBinding

@@ -1,17 +1,16 @@
-package com.rratsygin.myapplication
+package com.rratsygin.myapplication.presentation
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.rratsygin.myapplication.api.ApiFactory
-import com.rratsygin.myapplication.database.AppDatabase
-import com.rratsygin.myapplication.pojo.CoinPriceInfo
-import com.rratsygin.myapplication.pojo.CoinPriceInfoRawData
+import com.rratsygin.myapplication.data.network.ApiFactory
+import com.rratsygin.myapplication.data.database.AppDatabase
+import com.rratsygin.myapplication.data.model.CoinPriceInfo
+import com.rratsygin.myapplication.data.model.CoinPriceInfoRawData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {

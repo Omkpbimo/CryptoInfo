@@ -1,10 +1,10 @@
-package com.rratsygin.myapplication.database
+package com.rratsygin.myapplication.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rratsygin.myapplication.pojo.CoinPriceInfo
+import com.rratsygin.myapplication.data.model.CoinPriceInfo
 
 @Database(entities = [CoinPriceInfo::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

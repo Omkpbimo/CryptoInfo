@@ -1,4 +1,4 @@
-package com.rratsygin.myapplication.pojo
+package com.rratsygin.myapplication.data.model
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
