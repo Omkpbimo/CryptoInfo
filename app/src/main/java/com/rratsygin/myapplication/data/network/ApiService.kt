@@ -1,7 +1,7 @@
 package com.rratsygin.myapplication.data.network
 
-import com.rratsygin.myapplication.data.model.CoinInfoListOfData
-import com.rratsygin.myapplication.data.model.CoinPriceInfoRawData
+import com.rratsygin.myapplication.data.network.model.CoinNamesListDto
+import com.rratsygin.myapplication.data.network.model.CoinInfoJsonContainerDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,20 +9,20 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("top/totalvolfull")
-    fun getTopCoinInfo(
+    suspend fun getTopCoinInfo(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String = CURRENCY
 
-    ): Single<CoinInfoListOfData>
+    ): CoinNamesListDto
 
     @GET("pricemultifull")
-    fun getFullPriceList(
+    suspend fun getFullPriceList(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String = "",
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY
 
-    ): Single<CoinPriceInfoRawData>
+    ): CoinInfoJsonContainerDto
 
 
     companion object {

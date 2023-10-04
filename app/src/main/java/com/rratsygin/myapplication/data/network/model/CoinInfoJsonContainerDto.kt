@@ -1,14 +1,13 @@
-package com.rratsygin.myapplication.data.model
+package com.rratsygin.myapplication.data.network.model
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
-import org.json.JSONObject
 
 
-class CoinPriceInfoRawData {
+class CoinInfoJsonContainerDto {
     @SerializedName("RAW")
     @Expose
-     val coinPriceInfoJsonObject : JsonObject? = null
+     val json : JsonObject? = null
 }

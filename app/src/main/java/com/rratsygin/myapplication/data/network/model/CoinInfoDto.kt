@@ -1,4 +1,4 @@
-package com.rratsygin.myapplication.data.model
+package com.rratsygin.myapplication.data.network.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,8 +8,8 @@ import com.rratsygin.myapplication.data.network.ApiFactory.BASE_IMAGE_URL
 import com.rratsygin.myapplication.utils.convertTimestampToTime
 
 
-@Entity(tableName = "full_price_list")
-data class CoinPriceInfo (
+
+data class CoinInfoDto (
     @SerializedName("TYPE")
     @Expose
     val type: String? = null,
