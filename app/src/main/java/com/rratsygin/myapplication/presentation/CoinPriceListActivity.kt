@@ -12,7 +12,9 @@ import com.rratsygin.myapplication.domain.CoinInfo
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    private lateinit var _binding : ActivityCoinPriceListBinding
+    private val binding by lazy {
+        ActivityCoinPriceListBinding.inflate(layoutInflater)
+    }
 
 
 
@@ -22,10 +24,9 @@ class CoinPriceListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
-        setContentView(_binding.root)
+        setContentView(binding.root)
         val adapter = CoinInfoAdapter(this)
-        _binding.rvCoinPriceList.adapter = adapter
+        binding.rvCoinPriceList.adapter = adapter
 
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinInfo: CoinInfo) {

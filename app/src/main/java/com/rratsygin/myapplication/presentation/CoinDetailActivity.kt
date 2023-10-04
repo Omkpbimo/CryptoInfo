@@ -10,18 +10,20 @@ import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCoinDetailBinding
+    private val binding by lazy {
+        ActivityCoinDetailBinding.inflate(layoutInflater)
+    }
 
     private lateinit var viewModel : CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCoinDetailBinding.inflate(layoutInflater)
+//        binding = ActivityCoinDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-                 viewModel.getDetailInfo(fromSymbol).observe(this){
+        viewModel.getDetailInfo(fromSymbol).observe(this){
                 with(binding) {
                     tvPrice.text = it.price
                     tvMinPrice.text = it.lowday
