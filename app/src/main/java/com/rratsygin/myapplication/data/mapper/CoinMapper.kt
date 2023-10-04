@@ -6,6 +6,11 @@ import com.rratsygin.myapplication.data.network.model.CoinInfoDto
 import com.rratsygin.myapplication.data.network.model.CoinInfoJsonContainerDto
 import com.rratsygin.myapplication.data.network.model.CoinNamesListDto
 import com.rratsygin.myapplication.domain.CoinInfo
+import java.sql.Date
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 class CoinMapper {
 
@@ -18,7 +23,7 @@ class CoinMapper {
             lastUpdate = dto.lastUpdate,
             highday = dto.highday,
             lowday = dto.lowday,
-            imageurl = dto.imageurl
+            imageurl = BASE_IMAGE_URL + dto.imageurl
         )
     }
 
@@ -53,12 +58,27 @@ class CoinMapper {
             toSymbol = dbModel.toSymbol,
             price = dbModel.price,
             lastMarket = dbModel.lastMarket,
-            lastUpdate = dbModel.lastUpdate,
+            lastUpdate = convertTimestampToTime(dbModel.lastUpdate),
             highday = dbModel.highday,
             lowday = dbModel.lowday,
             imageurl = dbModel.imageurl
         )
     }
 
+    private fun convertTimestampToTime(timestamp: Long?) : String {
+        if (timestamp== null) return ""
+        val stamp = Timestamp(timestamp*1000)
+        val date = Date(stamp.time)
+        val pattern = "HH:mm:ss"
+        val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+        simpleDateFormat.timeZone = TimeZone.getDefault()
+        return simpleDateFormat.format(date)
+
 }
+
+    companion object {
+
+        private const val BASE_IMAGE_URL = "https://cryptocompare.com"
+
+    }    }
 

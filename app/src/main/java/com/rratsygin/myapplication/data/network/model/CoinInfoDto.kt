@@ -1,12 +1,8 @@
 package com.rratsygin.myapplication.data.network.model
 
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.rratsygin.myapplication.data.network.ApiFactory.BASE_IMAGE_URL
-import com.rratsygin.myapplication.utils.convertTimestampToTime
-
 
 
 data class CoinInfoDto (
@@ -204,13 +200,6 @@ data class CoinInfoDto (
     val imageurl: String? = null
 ) {
 
-    fun getFormattedTime() : String {
-        return convertTimestampToTime(lastUpdate)
-    }
 
-
-    fun getFullImageUrl() : String {
-        return BASE_IMAGE_URL + imageurl
-    }
 
 }

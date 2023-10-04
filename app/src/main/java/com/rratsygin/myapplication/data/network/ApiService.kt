@@ -1,8 +1,7 @@
 package com.rratsygin.myapplication.data.network
 
-import com.rratsygin.myapplication.data.network.model.CoinNamesListDto
 import com.rratsygin.myapplication.data.network.model.CoinInfoJsonContainerDto
-import io.reactivex.Single
+import com.rratsygin.myapplication.data.network.model.CoinNamesListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

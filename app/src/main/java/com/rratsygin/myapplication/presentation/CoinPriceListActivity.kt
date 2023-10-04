@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rratsygin.myapplication.presentation.adapters.CoinInfoAdapter
 import com.rratsygin.myapplication.databinding.ActivityCoinPriceListBinding
 import com.rratsygin.myapplication.data.network.model.CoinInfoDto
+import com.rratsygin.myapplication.domain.CoinInfo
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -27,18 +28,18 @@ class CoinPriceListActivity : AppCompatActivity() {
         _binding.rvCoinPriceList.adapter = adapter
 
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
-            override fun onCoinClick(coinInfoDto: CoinInfoDto) {
+            override fun onCoinClick(coinInfo: CoinInfo) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
-                    coinInfoDto.fromSymbol
+                    coinInfo.fromSymbol
                 )
-                Log.d("ON_CLICK_TEST", coinInfoDto.fromSymbol)
+                Log.d("ON_CLICK_TEST", coinInfo.fromSymbol)
                 startActivity(intent)
             }
         }
 
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        viewModel.priceList.observe(this, Observer {
+        viewModel.coinInfoList.observe(this, Observer {
             adapter.coinInfoList = it
         })
 
