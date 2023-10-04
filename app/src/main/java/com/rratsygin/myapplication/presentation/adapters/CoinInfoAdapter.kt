@@ -9,7 +9,7 @@ import com.rratsygin.myapplication.databinding.ItemCoinInfoBinding
 import com.rratsygin.myapplication.domain.CoinInfo
 import com.squareup.picasso.Picasso
 
-class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoViewHolder>() {
 
 
 
@@ -45,7 +45,7 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
             tvLastUpdate.text = lastUpdateTime + coin.lastUpdate
             Picasso.get().load(coin.imageurl).into(tvLogo)
         }
-        holder.itemView.setOnClickListener {
+        binding.root.setOnClickListener {
             onCoinClickListener?.onCoinClick(coin)
         }
     }
@@ -54,10 +54,6 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
         return coinInfoList.size
     }
 
-    class CoinInfoViewHolder(val binding : ItemCoinInfoBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
-    }
 
     interface OnCoinClickListener {
         fun onCoinClick(coinPriceInfo: CoinInfo)
