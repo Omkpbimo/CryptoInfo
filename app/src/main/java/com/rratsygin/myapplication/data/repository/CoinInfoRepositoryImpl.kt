@@ -4,18 +4,21 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.rratsygin.myapplication.data.database.AppDatabase
 import com.rratsygin.myapplication.data.mapper.CoinMapper
 import com.rratsygin.myapplication.data.network.ApiFactory
+import com.rratsygin.myapplication.data.workers.RefreshDataWorker
 import com.rratsygin.myapplication.domain.CoinInfo
 import com.rratsygin.myapplication.domain.CoinRepository
 import kotlinx.coroutines.delay
 
-class CoinInfoRepositoryImpl(private val application: Application) : CoinRepository{
+class CoinInfoRepositoryImpl(private val application: Application) : CoinRepository {
 
     private val mapper = CoinMapper()
     private val coinInfoDao = AppDatabase.getInstance(application).coinPriceInfoDao()
-    private val apiService = ApiFactory.apiService
+
 
     override fun getCoinInfoList(): LiveData<List<CoinInfo>> {
         return coinInfoDao.getPriceList().map {
@@ -23,7 +26,6 @@ class CoinInfoRepositoryImpl(private val application: Application) : CoinReposit
                 mapper.mapDbModelToEntity(it)
             }
         }
-
 
 
     }
@@ -34,22 +36,14 @@ class CoinInfoRepositoryImpl(private val application: Application) : CoinReposit
         }
     }
 
-    override suspend fun loadData() {
-        while (true) {
-            try {
-                val topCoins = apiService.getTopCoinInfo(limit = 50)
-                val fSyms = mapper.mapNamesListToString(topCoins)
-                val jsonContainer = apiService.getFullPriceList(fSyms = fSyms)
-                val coinInfoDtoList = mapper.mapJsonContainerToListCoinInfo(jsonContainer)
-                val dbModelList = coinInfoDtoList.map { mapper.mapDtoToDbModel(it) }
-                Log.d("Loading", "I`m here")
-                coinInfoDao.insertPriceList(dbModelList)
-                Log.d("Loading", "I`m here 2222")
-            } catch (e: Exception) {
+    override fun loadData() {
+        val workManager = WorkManager.getInstance(application)
+        workManager.enqueueUniqueWork(
+            RefreshDataWorker.WORKER_NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDataWorker.makeRequest()
 
-            }
-            delay(10000)
-        }
-
+        )
     }
+
 }
